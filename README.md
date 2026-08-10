@@ -1,16 +1,14 @@
-## Hi there 👋
+### Hi, I'm JM 👋
 
-<!--
-**JM-Bunagan-22/JM-Bunagan-22** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**Data Analytics Professional** at MERALCO, turning raw data into decisions.
 
-Here are some ideas to get you started:
+- 🔭 Currently working on dashboards, automation, and anomaly/fraud detection
+- 🛠️ Tools: Python · SQL · Excel · Power BI · Dash
+- 📊 Interests: geospatial analytics, time-series analysis, machine learning
+- ⚡ I automate whenever I can — repeatable systems over one-off scripts
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### Featured Projects
+- **[Utility Anomaly Detection](https://github.com/JM-Bunagan-22/utility-anomaly-detection)** — Flags suspicious electricity consumption patterns using rolling z-score and Isolation Forest on public household power data.
+
+### Let's connect
+[LinkedIn](https://www.linkedin.com/in/jm-bunagan/) · [Email](mailto:jmbunagan@gmail.com)
