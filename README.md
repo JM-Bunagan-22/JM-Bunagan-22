@@ -1,6 +1,6 @@
 ### Hi, I'm JM 👋
 
-**Data Analytics Professional** at MERALCO, turning raw data into decisions.
+**Data Analyst** at MERALCO, turning raw data into decisions.
 
 - 🔭 Currently working on dashboards, automation, and anomaly/fraud detection
 - 🛠️ Tools: Python · SQL · Excel · Power BI · Dash
