@@ -5,7 +5,7 @@ Dep. Variable:            gen_dev_pct   R-squared:                       0.097
 Model:                            OLS   Adj. R-squared:                  0.077
 Method:                 Least Squares   F-statistic:                     2.576
 Date:                Tue, 06 Oct 2026   Prob (F-statistic):             0.0815
-Time:                        12:37:24   Log-Likelihood:                -284.53
+Time:                        12:49:24   Log-Likelihood:                -284.53
 No. Observations:                  95   AIC:                             575.1
 Df Residuals:                      92   BIC:                             582.7
 Df Model:                           2                                         
@@ -33,7 +33,7 @@ Dep. Variable:            gen_dev_pct   R-squared:                       0.104
 Model:                            OLS   Adj. R-squared:                  0.074
 Method:                 Least Squares   F-statistic:                     1.973
 Date:                Tue, 06 Oct 2026   Prob (F-statistic):              0.124
-Time:                        12:37:24   Log-Likelihood:                -284.16
+Time:                        12:49:24   Log-Likelihood:                -284.16
 No. Observations:                  95   AIC:                             576.3
 Df Residuals:                      91   BIC:                             586.5
 Df Model:                           3                                         
@@ -62,7 +62,7 @@ Dep. Variable:                log_gen   R-squared:                       0.898
 Model:                            OLS   Adj. R-squared:                  0.886
 Method:                 Least Squares   F-statistic:                     199.7
 Date:                Tue, 06 Oct 2026   Prob (F-statistic):           3.94e-54
-Time:                        12:37:24   Log-Likelihood:                 115.20
+Time:                        12:49:24   Log-Likelihood:                 115.20
 No. Observations:                  95   AIC:                            -208.4
 Df Residuals:                      84   BIC:                            -180.3
 Df Model:                          10                                         
@@ -98,7 +98,7 @@ Dep. Variable:            gen_dev_pct   R-squared:                       0.090
 Model:                            OLS   Adj. R-squared:                  0.070
 Method:                 Least Squares   F-statistic:                     2.299
 Date:                Tue, 06 Oct 2026   Prob (F-statistic):              0.106
-Time:                        12:37:24   Log-Likelihood:                -284.89
+Time:                        12:49:24   Log-Likelihood:                -284.89
 No. Observations:                  95   AIC:                             575.8
 Df Residuals:                      92   BIC:                             583.4
 Df Model:                           2                                         

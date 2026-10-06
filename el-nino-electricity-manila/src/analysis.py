@@ -361,6 +361,66 @@ def outlook(p, enso_fit):
                         "expected_mam2027_tmax_anom_by_peak_oni": heat, "scenarios": rows}
 
 
+def six_month_outlook(p, oni_oct2026=3.0):
+    """PAGASA window: very strong El Nino Oct 2026 - Mar 2027 -> Nov 2026 - Apr 2027 bills.
+
+    Temperature: cool-season (Oct-Mar) regression of the Manila afternoon anomaly on
+    ONI five months earlier, so Oct 2026 - Feb 2027 use ONI already observed and only
+    Mar 2027 needs an assumed Oct 2026 value.
+    Price: (a) heat channel = supply-month temperature model x forecast anomaly;
+    (b) analog channel = Nov-Apr bill deviation regressed on supply-season ONI.
+    """
+    base = p.loc[pd.Period("2026-09", "M"), "gen_charge"]
+    oni = p.oni.copy()
+    oni[pd.Period("2026-10", "M")] = oni_oct2026
+    q = p.assign(oni_l5=p.oni.shift(5))
+    cool = q[q.index.month.isin([10, 11, 12, 1, 2, 3])].dropna(subset=["tmax_anom", "oni_l5"])
+    ft = smf.ols("tmax_anom ~ oni_l5", cool).fit()
+    fh = smf.ols("heat_index_anom ~ oni_l5", cool).fit()
+
+    d = p.dropna(subset=["gen_dev_pct"])
+    d = d[(d.staggered == 0) & d.index.month.isin([11, 12, 1, 2, 3, 4])]
+    season = pd.Series([i.year if i.month >= 11 else i.year - 1 for i in d.index], index=d.index)
+    seas = pd.DataFrame({"dev": d.gen_dev_pct.groupby(season).mean(), "oni": d.oni_supply.groupby(season).mean()})
+    fs = smf.ols("dev ~ oni", seas).fit()
+    normal = d.groupby(d.index.month).gen_dev_pct.mean()
+    m1_slope = STATS["price_models"]["m1_pct_per_c"]["coef"]
+    peak = oni_oct2026
+    analog_pct = fs.params.oni * peak  # vs an ENSO-neutral season
+
+    rows = []
+    for wm in pd.period_range("2026-10", "2027-03", freq="M"):
+        o = oni[wm - 5]
+        pr = ft.get_prediction(pd.DataFrame({"oni_l5": [o]})).summary_frame(alpha=0.2)
+        ta = float(pr["mean"].iloc[0])
+        heat_pct = m1_slope * ta
+        rows.append({
+            "weather_month": str(wm), "bill_month": str(wm + 1), "oni_5mo_earlier": round(o, 2),
+            "tmax_anom_c": round(ta, 2), "tmax_anom_80pct": [round(float(pr.obs_ci_lower.iloc[0]), 2),
+                                                             round(float(pr.obs_ci_upper.iloc[0]), 2)],
+            "heat_index_anom_c": round(fh.params.Intercept + fh.params.oni_l5 * o, 2),
+            "normal_bill_dev_pct": round(normal[(wm + 1).month], 2),
+            "heat_channel_php_kwh": round(base * heat_pct / 100, 3),
+            "heat_channel_php_200kwh": round(base * heat_pct / 100 * 224),
+        })
+    out = pd.DataFrame(rows)
+    out.to_csv(PROC / "outlook_next_6_months.csv", index=False)
+    STATS["six_month_outlook"] = {
+        "temp_model": {"slope_c_per_oni": round(ft.params.oni_l5, 3), "r2": round(ft.rsquared, 3),
+                       "p": round(ft.pvalues.oni_l5, 4), "n": int(ft.nobs)},
+        "hi_model": {"slope_c_per_oni": round(fh.params.oni_l5, 3), "p": round(fh.pvalues.oni_l5, 4)},
+        "analogs_oct_mar_tmax_anom": {a: round(p.loc[a:b].tmax_anom.mean(), 2) for a, b in
+                                      [("2015-10", "2016-03"), ("2023-10", "2024-03"), ("2018-10", "2019-03")]},
+        "season_price_model": {"pct_per_oni": round(fs.params.oni, 2), "p": round(fs.pvalues.oni, 3),
+                               "r2": round(fs.rsquared, 2), "n_seasons": int(fs.nobs),
+                               "seasons": seas.round(2).reset_index(names="season").to_dict("records")},
+        "analog_add_at_peak": {"peak_oni": peak, "pct": round(analog_pct, 2),
+                               "php_kwh": round(base * analog_pct / 100, 3),
+                               "php_200kwh_incl_vat": round(base * analog_pct / 100 * 224)},
+        "rows": rows,
+    }
+
+
 def event_table(p):
     """Billing-month Apr-Jun generation charge vs its 13-mo average, by year."""
     rows = []
@@ -384,6 +444,7 @@ if __name__ == "__main__":
     m1, m2 = heat_to_price(p)
     event_table(p)
     outlook(p, enso_fit)
+    six_month_outlook(p)
     oni = p.oni.dropna()
     STATS["oni_peaks"] = {"2015_16": round(p.loc["2015-06":"2016-06"].oni.max(), 2),
                           "2023_24": round(p.loc["2023-06":"2024-06"].oni.max(), 2),

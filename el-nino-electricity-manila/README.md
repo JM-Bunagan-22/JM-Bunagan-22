@@ -4,7 +4,7 @@
 
 **Short answer:** El Niño reliably makes Manila's *next* summer hotter. Hot months reliably bill higher. But the El Niño-specific extra heat doesn't show up as a clean, statistically measurable bump in Meralco's *blended* generation charge. The heat premium is real but modest (≈2.5% between hot and cool months). Spot-market (WESM) stress during red/yellow-alert weeks can add ~7% in a single bill. Fuel prices, the peso, and regulator intervention (ERC) routinely swamp both.
 
-> Context (Oct 2026): NOAA's Climate Prediction Center issued an El Niño Advisory on 10 Sep 2026, with a >90% chance of a very strong event this winter and a ~75% chance of a historic one. PAGASA puts the odds of a very strong El Niño for Oct 2026–Jan 2027 at 81%. History says the bill impact lands in **Metro Manila's Mar–May 2027 dry season**, i.e. the **Apr–Jun 2027 Meralco bills**.
+> Context (Oct 2026): NOAA's Climate Prediction Center issued an El Niño Advisory on 10 Sep 2026, with a >90% chance of a very strong event this winter and a ~75% chance of a historic one. PAGASA puts the odds of a very strong El Niño for Oct 2026–Jan 2027 at 81%. **Next 6 months (Nov 2026 – Apr 2027 bills):** expect Manila afternoons **+0.2 °C rising to +0.8 °C** above normal. Generation charge: **≈ +1% to +4% (+₱20 to +₱85/month for 200 kWh)**, largest in the April 2027 bill (see §3). The bigger exposure is the **Apr–Jun 2027 dry-season bills** (see §4).
 
 ![Timeline](figures/fig1_timeline.png)
 
@@ -98,7 +98,37 @@ Meralco's rate schedules for 2015–16 aren't in its public archive, so this is 
 
 In other words, the super El Niño's heat was real, but the fuel cycle overwhelmed it.
 
-## 3. Outlook: what the 2026–27 event could mean for Apr–Jun 2027 bills
+## 3. The next 6 months: PAGASA's very strong El Niño window (Oct 2026 – Mar 2027)
+
+PAGASA: **81% chance of a very strong El Niño Oct 2026 – Jan 2027**, 97% chance it persists into the first half of 2027. It expects **way-below-normal rainfall from December to March**, and DOST warns the whole country could be in drought by **March 2027**. This weather lands in the **Nov 2026 – Apr 2027 Meralco bills**.
+
+**Temperature.** In Oct–Mar, Manila's afternoon temperature anomaly rises **+0.27 °C per +1 °C of ONI five months earlier** (p = 0.002, 72 months). Oct 2026 – Feb 2027 can therefore be forecast from ONI values already observed (May–Sep 2026); only March 2027 needs an assumption (Oct 2026 ONI ≈ +3.0). Both past strong events back this up: Oct–Mar averaged **+0.52 °C in 2015–16** and **+0.53 °C in 2023–24**.
+
+| Weather month | Bill month | ONI 5 mo earlier | Afternoon temp anomaly (80% range) | Heat-index anomaly | Normal bill vs trend | Heat-only price effect (200 kWh) |
+|---|---|---:|---:|---:|---:|---:|
+| Oct 2026 | Nov 2026 | +0.95 | **+0.2 °C** (−0.5 to +0.9) | +0.3 °C | +0.5% | +₱0.01/kWh (+₱2) |
+| Nov 2026 | Dec 2026 | +1.49 | **+0.4 °C** (−0.4 to +1.1) | +0.4 °C | −1.5% | +₱0.02/kWh (+₱4) |
+| Dec 2026 | Jan 2027 | +2.05 | **+0.5 °C** (−0.2 to +1.3) | +0.6 °C | −1.6% | +₱0.02/kWh (+₱5) |
+| Jan 2027 | Feb 2027 | +2.58 | **+0.7 °C** (−0.1 to +1.4) | +0.8 °C | −0.4% | +₱0.03/kWh (+₱7) |
+| Feb 2027 | Mar 2027 | +2.84 | **+0.7 °C** (0.0 to +1.5) | +0.9 °C | −0.4% | +₱0.03/kWh (+₱8) |
+| Mar 2027 | Apr 2027 | ≈ +3.0 | **+0.8 °C** (0.0 to +1.6) | +0.9 °C | **+1.7%** | +₱0.04/kWh (+₱8) |
+
+*"Normal bill vs trend" is the usual seasonal position of the generation charge for that bill month. Peso amounts use the Sep 2026 generation charge (₱9.7032/kWh) plus 12% VAT and hold fuel, FX and contracts constant.*
+
+**Price, two ways:**
+1. **Heat alone** (temperature → generation charge model, +0.48%/°C): only **+₱0.01 to +₱0.04/kWh**, i.e. **₱2–8/month** for a 200 kWh home. The confidence interval includes zero.
+2. **Whole El Niño seasons** (Nov–Apr bills in each season since 2018 vs ENSO strength): bills ran **+1.3% above trend per +1 °C of ONI** (p = 0.15, only 8 seasons). The 2023–24 strong El Niño season ran about **+1%** above an ENSO-neutral one. Extrapolating to a very strong event (ONI ≈ +3) gives about **+4%** (≈ +₱0.38/kWh). This channel also picks up drought, low hydro and supply tightness, not just heat.
+
+**Expected effect for Nov 2026 – Apr 2027 bills:** roughly **+1% to +4% on the generation charge, ≈ +₱0.10 to +₱0.38/kWh, or about +₱20 to +₱85/month** for a 200 kWh household.
+* **Dec–Mar bills:** normally the cheapest of the year, so El Niño mostly cancels the usual cool-season dip rather than producing a visible spike.
+* **April 2027 bill:** where it starts to bite. The seasonal premium (+1.7%), March heat (+0.8 °C) and drought-reduced hydro all stack.
+* **May–June 2027 bills:** the bigger exposure falls just *after* this 6-month window (see the scenarios below).
+
+Treat the top end (+4%) as an extrapolation. No past season in the price data was this strong.
+
+Output: [`data/processed/outlook_next_6_months.csv`](data/processed/outlook_next_6_months.csv)
+
+## 4. Outlook: what the 2026–27 event could mean for Apr–Jun 2027 bills
 
 Scenarios applied to the Sep 2026 generation charge (₱9.7032/kWh) and a 200 kWh household, including 12% VAT on the generation charge:
 
@@ -159,6 +189,7 @@ python src/analysis.py        # builds panel, figures/, data/processed/
 * IEMOP: [Sustained high demand affects market prices in April till mid-May 2024](https://www.iemop.ph/news/sustained-high-demand-affects-market-prices-in-april-till-mid-may-2024/)
 * NOAA CPC: [ENSO Diagnostic Discussion, Sep 2026](https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_disc_sep2026/ensodisc.shtml)
 * GMA News: [Very strong El Niño likely from October 2026 to January 2027 — PAGASA](https://www.gmanetwork.com/news/weather/content/996484/very-strong-el-ni-o-likely-from-october-2026-to-january-2027-pagasa/story/)
+* Philippine Star: [DOST: Entire Philippines could be under drought conditions in March 2027](https://philstar.com/headlines/weather/2026/10/05/2561112/dost-entire-philippines-could-be-under-drought-conditions-march-2027)
 * Philippine Star (via PressReader): [Electricity rates up 29¢/kWh this month (Jul 2016)](https://www.pressreader.com/philippines/the-philippine-star/20160706/281530815344159)
 * Compiled pre-2018 rates: [pinas.solar Meralco rate data](https://www.pinas.solar/solar-guides/meralco-rate-data) (lower confidence, see Data)
 * ERA5: Hersbach et al. (2020), via [ARCO-ERA5](https://github.com/google-research/arco-era5); GHCN-Daily: Menne et al. (2012), via the [NOAA Open Data Dissemination program on AWS](https://registry.opendata.aws/noaa-ghcn/)
